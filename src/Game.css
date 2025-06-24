@@ -125,14 +125,46 @@ body::before {
   background: #666;
 }
 .log {
-  background: #181818;
+  background: rgba(24, 24, 32, 0.92);
   min-height: 80px;
-  margin-top: 20px;
-  padding: 10px;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  max-height: 160px;
+  margin-top: 24px;
+  padding: 18px 22px;
+  border-radius: 16px;
+  font-size: 1.15rem;
+  max-height: 180px;
   overflow-y: auto;
+  color: #e0f7fa;
+  box-shadow: 0 4px 24px #1a263988, 0 2px 8px #00ff8055;
+  border: 2.5px solid #3d81ff55;
+  letter-spacing: 0.5px;
+  line-height: 1.7;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+/* เพิ่มลูกเล่นข้อความแต่ละบรรทัด */
+.log div {
+  margin-bottom: 6px;
+  padding-left: 8px;
+  border-left: 3px solid #00ff80;
+  background: linear-gradient(90deg, #23252611 70%, #00ff8011 100%);
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.log div:last-child {
+  margin-bottom: 0;
+}
+
+/* ข้อความสำคัญ (เช่น win/lose) */
+.log .important, .log .win {
+  color: #ffe066;
+  font-weight: bold;
+  text-shadow: 0 2px 8px #fffbe6cc;
+}
+.log .lose {
+  color: #ff5252;
+  font-weight: bold;
+  text-shadow: 0 2px 8px #ff525288;
 }
 .result {
   margin-top: 20px;
@@ -496,6 +528,36 @@ body::before {
   color: #fff;
   font-size: 13px;
   line-height: 22px;
+  text-shadow: 1px 1px 2px #000;
+  pointer-events: none;
+}
+
+/* Mana Bar */
+.mana-bar-container {
+  width: 320px;
+  height: 18px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  border: 2px solid #2e7cff;
+  background: #1a2233;
+  position: relative;
+  overflow: hidden;
+}
+.mana-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #00cfff 60%, #2e7cff 100%);
+  border-radius: 12px 0 0 12px;
+  transition: width 0.5s cubic-bezier(.4,2.3,.3,1);
+}
+.mana-bar-text {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  text-align: center;
+  color: #fff;
+  font-size: 13px;
+  line-height: 18px;
   text-shadow: 1px 1px 2px #000;
   pointer-events: none;
 }

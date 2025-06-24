@@ -75,6 +75,18 @@ const weapons = [
 ];
 
 function getRandomEnemy(playerName) {
+  // เพิ่มโอกาสเจอมังกรและบัฟมังกรถ้าชื่อ dragonkiller
+  if (playerName.trim().toLowerCase() === "dragonkiller") {
+    if (Math.random() < 0.9) {
+      // สุ่มเลือดและมานา 2-20 เท่า
+      const dragon = { ...enemies[3] };
+      const multi = Math.floor(Math.random() * 19) + 2; // 2-20
+      dragon.hp = dragon.hp * multi;
+      dragon.mana = dragon.mana * multi;
+      dragon.desc += ` (x${multi} พลัง!)`;
+      return dragon;
+    }
+  }
   if (playerName === "God777" && Math.random() < 0.9) return enemies[4];
   const r = Math.random();
   if (r < 0.4) return enemies[0];
@@ -333,7 +345,17 @@ export default function Game() {
                 />
                 <span className="hp-bar-text">{player.hp} / 10000</span>
               </div>
-              <div>Mana: {player.mana}</div>
+              {/* หลอดมานาผู้เล่น */}
+              <div className="mana-bar-container">
+                <div
+                  className="mana-bar"
+                  style={{
+                    width: `${getHpPercent(player.mana, 1000 + (weapon ? weapon.mana : 0))}%`,
+                    transition: "width 0.5s cubic-bezier(.4,2.3,.3,1)",
+                  }}
+                />
+                <span className="mana-bar-text">{player.mana} / {1000 + (weapon ? weapon.mana : 0)}</span>
+              </div>
               <img src={weapon.img} alt={weapon.name} className="avatar" />
               <div>อาวุธ: {weapon.name}</div>
             </div>
@@ -343,14 +365,24 @@ export default function Game() {
                 <div
                   className="hp-bar"
                   style={{
-                    width: `${getHpPercent(enemy.hp, enemies.find(e => e.name === enemy.name).hp)}%`,
+                    width: `${getHpPercent(enemy.hp, enemies.find(e => e.name === enemy.name)?.hp || enemy.hp)}%`,
                     background: "#e53935",
                     transition: "width 0.5s cubic-bezier(.4,2.3,.3,1)",
                   }}
                 />
-                <span className="hp-bar-text">{enemy.hp} / {enemies.find(e => e.name === enemy.name).hp}</span>
+                <span className="hp-bar-text">{enemy.hp} / {enemies.find(e => e.name === enemy.name)?.hp || enemy.hp}</span>
               </div>
-              <div>Mana: {enemy.mana}</div>
+              {/* หลอดมานาศัตรู */}
+              <div className="mana-bar-container">
+                <div
+                  className="mana-bar"
+                  style={{
+                    width: `${getHpPercent(enemy.mana, enemies.find(e => e.name === enemy.name)?.mana || enemy.mana)}%`,
+                    transition: "width 0.5s cubic-bezier(.4,2.3,.3,1)",
+                  }}
+                />
+                <span className="mana-bar-text">{enemy.mana} / {enemies.find(e => e.name === enemy.name)?.mana || enemy.mana}</span>
+              </div>
               <div className={`enemy-effect effect-${enemy.name.toLowerCase()}`}></div>
               <img src={enemy.img} alt={enemy.name} className="avatar" />
               <div>{enemy.desc}</div>
