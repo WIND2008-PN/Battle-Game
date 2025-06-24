@@ -70,7 +70,7 @@ const weapons = [
     mana: 0,
     cost: 999,
     img: "holysword.png",
-    desc: "สุ่ม 1% ได้อาวุธนี้",
+    desc: "อาวุธศักดิ์สิทธิ์! โจมตี 10000",
   },
 ];
 
@@ -295,13 +295,21 @@ export default function Game() {
         <div className="choose-weapon">
           <h2>เลือกอาวุธ</h2>
           <div className="weapon-list">
-            {weapons.map((w, i) => (
-              <div key={i} className="weapon-card" onClick={() => selectWeapon(w)}>
-                <img src={w.img} alt={w.name} />
-                <div>{w.name}</div>
-                <div>{w.desc}</div>
-              </div>
-            ))}
+            {weapons
+              .filter(w => {
+                if (w.name === "Holy sword") {
+                  const name = playerName.trim().toLowerCase();
+                  return name === "ผู้กล้า" || name === "hero";
+                }
+                return true;
+              })
+              .map((w, i) => (
+                <div key={i} className="weapon-card" onClick={() => selectWeapon(w)}>
+                  <img src={w.img} alt={w.name} />
+                  <div>{w.name}</div>
+                  <div>{w.desc}</div>
+                </div>
+              ))}
           </div>
         </div>
       )}
