@@ -1,16 +1,26 @@
-/* Adventure Responsive Game Container */
-.game-container {
-  width: 96vw;
-  max-width: 1100px;
-  min-width: 320px;
-  min-height: 80vh;
-  margin: 48px auto 32px auto;
+/* Game Container */
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
   font-family: 'Kanit', 'Prompt', 'Segoe UI', sans-serif;
-  background: rgba(34, 40, 56, 0.97);
-  color: #fff;
-  padding: 48px 32px 32px 32px;
-  border-radius: 32px;
-  box-shadow: 0 8px 48px #1a1a1a88, 0 2px 8px #00ff8055;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-x: hidden;
+}
+
+.game-container {
+  width: 95vw;
+  max-width: 900px;
+  margin: 30px auto;
+  background: #ffffff;
+  color: #2c3e50;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,314 +28,287 @@
   position: relative;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .game-container {
-    padding: 24px 4vw 18px 4vw;
-    max-width: 99vw;
+    padding: 24px;
+    margin: 20px auto;
+    width: 96vw;
   }
 }
+
 @media (max-width: 600px) {
   .game-container {
-    padding: 8px 1vw 8px 1vw;
-    border-radius: 14px;
+    padding: 16px;
+    margin: 16px auto;
+    width: 98vw;
+    border-radius: 16px;
   }
-}
-
-/* Adventure Theme Background with Animation */
-body {
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  font-family: 'Kanit', 'Prompt', 'Segoe UI', sans-serif;
-  background: linear-gradient(120deg, #2e3c2f 0%, #4e5d30 30%, #2d3e50 60%, #1a2639 100%);
-  background-size: 400% 400%;
-  animation: adventureWave 18s ease-in-out infinite;
-  overflow-x: hidden;
-  position: relative;
-}
-
-/* Adventure fog, sunlight, and subtle particles */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  pointer-events: none;
-  z-index: 0;
-  background: 
-    radial-gradient(circle at 80% 10%, #ffe06655 0%, #fffbe600 60%),
-    radial-gradient(circle at 20% 90%, #a3ffb855 0%, #fffbe600 60%),
-    repeating-linear-gradient(120deg, #fff1 0 2px, transparent 2px 40px);
-  opacity: 0.18;
-  animation: adventureFog 32s linear infinite;
-}
-
-@keyframes adventureWave {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
-}
-@keyframes adventureFog {
-  0% {background-position: 0 0, 0 0, 0 0;}
-  100% {background-position: 100px 100px, 120px 120px, 60px 60px;}
-}
-
-.game-container {
-  max-width: 700px;
-  margin: 0 auto;
-  font-family: sans-serif;
-  background: #222;
-  color: #fff;
-  padding: 20px;
-  border-radius: 16px;
 }
 .menu, .input-name, .enemy-select, .choose-weapon {
   text-align: center;
   margin-top: 40px;
 }
+
+.input-name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  min-width: 300px;
+}
+
+.input-name label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.choose-weapon h2 {
+  color: #667eea;
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+}
+
 .weapon-list {
   display: flex;
   justify-content: center;
   gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
 }
+
 .weapon-card {
-  background: #333;
-  border-radius: 10px;
-  padding: 10px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 15px;
+  padding: 20px;
   cursor: pointer;
-  width: 120px;
-  transition: 0.2s;
+  width: 140px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border: 2px solid transparent;
 }
+
 .weapon-card:hover {
-  background: #444;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  color: #fff;
+  border-color: #fff;
 }
-.weapon-card img, .avatar {
+
+.weapon-card img {
   width: 80px;
   height: 80px;
   object-fit: contain;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  border: none;
+  box-shadow: none;
 }
+
+.weapon-card div {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
 .status {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  justify-content: space-around;
+  margin-bottom: 30px;
+  gap: 30px;
+  width: 100%;
+  flex-wrap: wrap;
 }
+
+.status > div {
+  flex: 1;
+  min-width: 280px;
+  text-align: center;
+  background: #f8fafb;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.status h3 {
+  color: #667eea;
+  font-size: 1.4rem;
+  margin: 0 0 15px 0;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
 .actions button {
+  padding: 12px 20px;
+  font-size: 0.95rem;
   margin: 5px;
-  padding: 10px 20px;
-  font-size: 1rem;
-  border-radius: 8px;
-  border: none;
-  background: #444;
-  color: #fff;
-  cursor: pointer;
-  transition: 0.2s;
+  flex: 1;
+  min-width: 100px;
+  max-width: 140px;
 }
-.actions button:hover:enabled {
-  background: #666;
-}
+
 .log {
-  background: rgba(24, 24, 32, 0.92);
-  min-height: 80px;
-  margin-top: 24px;
-  padding: 18px 22px;
-  border-radius: 16px;
-  font-size: 1.15rem;
-  max-height: 180px;
+  background: #f8fafb;
+  border: 2px solid #e0e6ff;
+  border-radius: 15px;
+  min-height: 150px;
+  max-height: 250px;
   overflow-y: auto;
-  color: #e0f7fa;
-  box-shadow: 0 4px 24px #1a263988, 0 2px 8px #00ff8055;
-  border: 2.5px solid #3d81ff55;
-  letter-spacing: 0.5px;
-  line-height: 1.7;
-  transition: background 0.2s, box-shadow 0.2s;
-}
-
-/* เพิ่มลูกเล่นข้อความแต่ละบรรทัด */
-.log div {
-  margin-bottom: 6px;
-  padding-left: 8px;
-  border-left: 3px solid #00ff80;
-  background: linear-gradient(90deg, #23252611 70%, #00ff8011 100%);
-  border-radius: 6px;
-  transition: background 0.2s;
-}
-
-.log div:last-child {
-  margin-bottom: 0;
-}
-
-/* ข้อความสำคัญ (เช่น win/lose) */
-.log .important, .log .win {
-  color: #ffe066;
-  font-weight: bold;
-  text-shadow: 0 2px 8px #fffbe6cc;
-}
-.log .lose {
-  color: #ff5252;
-  font-weight: bold;
-  text-shadow: 0 2px 8px #ff525288;
-}
-.result {
+  padding: 20px;
   margin-top: 20px;
-  font-size: 1.3rem;
-  color: #ff0;
-}
-body {
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(135deg, #232526 0%, #414345 100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    font-family: 'Kanit', 'Prompt', 'Segoe UI', sans-serif;
-    /* เพิ่มลูกเล่นแสง */
-    box-shadow: 0 0 80px 0 #3d81ff44 inset;
-    position: relative;
-    overflow-x: hidden;
+  width: 100%;
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #2c3e50;
 }
 
+.log div {
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  background: #fff;
+  border-left: 3px solid #667eea;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.log div:hover {
+  background: #f0f4ff;
+}
+
+.result {
+  margin-top: 30px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #764ba2;
+  padding: 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 15px;
+  text-align: center;
+  width: 100%;
+}
 h1, .strong-title {
-    font-size: 2.8rem;
-    font-weight: 900;
-    letter-spacing: 3px;
-    color: #fff;
-    text-shadow: 0 4px 24px #3d81ff88, 0 2px 0 #222;
-    margin-top: 40px;
-    margin-bottom: 24px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #667eea;
+    margin: 20px 0 30px 0;
     text-transform: uppercase;
-    background: linear-gradient(90deg, #00ff80 0%, #3d81ff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
 }
 
 .strong-text, .fancy-text {
-    font-size: 1.5rem;
-    color: #00ff80;
-    font-weight: bold;
-    letter-spacing: 2px;
-    text-shadow: 0 2px 8px #3d81ff88, 0 1px 0 #fff;
-    margin: 12px 0;
-    transition: color 0.2s;
+    font-size: 1.1rem;
+    color: #555;
+    font-weight: 600;
+    margin: 10px 0;
+    transition: color 0.3s;
 }
 
 .strong-text:hover {
-    color: #fff;
-    text-shadow: 0 0 16px #00ff80, 0 2px 8px #3d81ff88;
+    color: #667eea;
 }
 
 button {
-    padding: 18px 40px;
-    font-size: 1.3rem;
-    margin: 8px;
+    padding: 14px 32px;
+    font-size: 1.05rem;
+    margin: 10px;
     cursor: pointer;
     border: none;
-    border-radius: 14px;
-    background: linear-gradient(135deg, #00ff80 0%, #3d81ff 100%);
-    color: #232526;
-    box-shadow: 0 4px 16px rgba(61, 129, 255, 0.25), 0 1.5px 4px rgba(0,0,0,0.12);
-    transition: 
-        background 0.3s,
-        transform 0.1s,
-        box-shadow 0.2s;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-shadow: 0 2px 8px #fff8, 0 1px 0 #fff;
-}
-
-button:hover {
-    background: linear-gradient(135deg, #3d81ff 0%, #00ff80 100%);
-    transform: translateY(-2px) scale(1.06) rotate(-2deg);
-    box-shadow: 0 8px 32px #00ff8044, 0 2px 8px rgba(0,0,0,0.13);
+    border-radius: 10px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: #fff;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    transition: all 0.3s ease;
+    font-weight: 600;
 }
 
-button:active {
-    background: linear-gradient(135deg, #232526 0%, #00ff80 100%);
-    transform: scale(0.98) rotate(2deg);
-    box-shadow: 0 2px 8px #3d81ff44, 0 1px 4px rgba(0,0,0,0.12);
-    color: #00ff80;
+button:hover:not(:disabled) {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+button:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(102, 126, 234, 0.4);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 input[type="checkbox"] {
-    width: 32px;
-    height: 32px;
-    accent-color: #00ff80;
-    border-radius: 8px;
-    transition: box-shadow 0.2s, transform 0.2s;
-    box-shadow: 0 2px 8px rgba(61, 129, 255, 0.15);
-    margin-right: 12px;
+    width: 22px;
+    height: 22px;
+    accent-color: #667eea;
+    border-radius: 4px;
+    margin-right: 10px;
     cursor: pointer;
-    border: 2px solid #3d81ff;
+    border: 2px solid #ddd;
+    transition: all 0.3s;
 }
 
 input[type="checkbox"]:hover {
-    box-shadow: 0 4px 16px #00ff8044;
-    transform: scale(1.1) rotate(-5deg);
-    border-color: #00ff80;
-}
-
-input[type="checkbox"]:active {
-    transform: scale(0.95) rotate(2deg);
-    border-color: #fff;
+    border-color: #667eea;
 }
 
 input[type="text"], input[type="number"] {
-    padding: 14px 20px;
-    font-size: 1.2rem;
+    padding: 12px 16px;
+    font-size: 1rem;
     border-radius: 10px;
-    border: 2px solid #3d81ff;
+    border: 2px solid #ddd;
     outline: none;
-    background: rgba(255,255,255,0.85);
-    box-shadow: 0 2px 8px #3d81ff22;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     margin: 10px 0;
-    transition: box-shadow 0.2s, background 0.2s, border-color 0.2s;
+    transition: all 0.3s;
     font-family: inherit;
-    color: #232526;
-    font-weight: 500;
+    color: #2c3e50;
 }
 
 input[type="text"]:focus, input[type="number"]:focus {
-    background: #fff;
-    box-shadow: 0 4px 16px #00ff8044;
-    border-color: #00ff80;
+    border-color: #667eea;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
 }
 
 li {
-    background: linear-gradient(90deg, #232526 60%, #3d81ff22 100%);
-    border-radius: 12px;
+    background: #f8fafb;
+    border-left: 4px solid #667eea;
+    border-radius: 8px;
     margin: 10px 0;
-    padding: 18px 24px;
-    box-shadow: 0 2px 12px #3d81ff22;
+    padding: 14px 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     display: flex;
     align-items: center;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #fff;
-    transition: box-shadow 0.2s, background 0.2s;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #2c3e50;
+    transition: all 0.3s;
 }
 
 li:hover {
-    background: linear-gradient(90deg, #3d81ff 0%, #00ff80 100%);
-    color: #232526;
-    box-shadow: 0 6px 24px #00ff8044;
+    background: #f0f4ff;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
 }
 
 img {
-    border-radius: 16px;
-    box-shadow: 0 4px 24px #3d81ff33;
-    margin: 16px 0;
-    border: 3px solid #00ff80;
-    transition: box-shadow 0.2s, border-color 0.2s;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin: 12px 0;
+    border: 2px solid #f0f4ff;
+    transition: all 0.3s;
     max-width: 380px;
 }
 
 img:hover {
-    box-shadow: 0 8px 32px #00ff80cc, 0 2px 8px #3d81ff88;
-    border-color: #3d81ff;
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+    transform: translateY(-2px);
 }
 
 .congrats-animation {
@@ -333,192 +316,46 @@ img:hover {
     top: 15%;
     left: 50%;
     transform: translate(-50%, 0);
-    background: linear-gradient(135deg, #00ff80 0%, #3d81ff 100%);
-    color: #232526;
-    font-size: 2.2rem;
+    background: #4CAF50;
+    color: #fff;
+    font-size: 1.5rem;
     font-weight: bold;
-    padding: 32px 48px;
-    border-radius: 24px;
-    box-shadow: 0 8px 32px #3d81ff33;
+    padding: 20px 32px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     z-index: 9999;
-    animation: popFade 2.5s cubic-bezier(.68,-0.55,.27,1.55);
+    animation: popFade 2.5s ease-out forwards;
     text-align: center;
-    letter-spacing: 2px;
-    border: 4px solid #fff;
-    text-shadow: 0 2px 8px #fff8, 0 1px 0 #fff;
+    letter-spacing: 1px;
 }
 
 @keyframes popFade {
-    0% { transform: translate(-50%, -40px) scale(0.7); opacity: 0; }
-    20% { transform: translate(-50%, 0) scale(1.1); opacity: 1; }
-    40% { transform: translate(-50%, 0) scale(1); }
+    0% { transform: translate(-50%, -30px); opacity: 0; }
+    20% { opacity: 1; }
     80% { opacity: 1; }
-    100% { opacity: 0; }
-}
-/* พื้นหลังอวกาศคลื่นไหลลื่น */
-body {
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  font-family: 'Kanit', 'Prompt', 'Segoe UI', sans-serif;
-  background: linear-gradient(120deg, #0f2027, #ff0000, #fff34a, #26d05f, #5792ff, #e100ff);
-  background-size: 400% 400%;
-  animation: spaceWave 16s ease-in-out infinite;
-  overflow-x: hidden;
-  position: relative;
-}
-
-/* เพิ่มจุดดาว */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  pointer-events: none;
-  z-index: 0;
-  background: 
-    radial-gradient(white 1px, transparent 1px) 0 0/40px 40px,
-    radial-gradient(white 1px, transparent 1px) 20px 20px/40px 40px;
-  opacity: 0.12;
-  animation: starsMove 60s linear infinite;
-}
-
-@keyframes spaceWave {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
-}
-
-@keyframes starsMove {
-  0% {background-position: 0 0, 20px 20px;}
-  100% {background-position: 100px 100px, 120px 120px;}
-}
-
-/* การ์ด input/result */
-.bmi-card {
-  background: rgba(30, 44, 80, 0.85);
-  border-radius: 32px;           /* เพิ่มความโค้ง */
-  box-shadow: 0 12px 48px #00ffe088, 0 4px 16px #1e3c72cc;
-  padding: 48px 40px 40px 40px;  /* เพิ่ม padding */
-  margin: 64px auto 0 auto;      /* เพิ่ม margin */
-  max-width: 540px;              /* เพิ่มขนาดความกว้าง */
-  position: relative;
-  z-index: 1;
-  border: 5px solid #26d0ce;     /* เพิ่มความหนาของกรอบ */
-  overflow: hidden;
-}
-
-/* วิบวับ */
-.bmi-card::after {
-  content: "";
-  position: absolute;
-  top: -60px; left: -60px;
-  width: 180px; height: 180px;
-  background: conic-gradient(from 0deg, #fff0 0deg 240deg, #00ffe0 270deg 300deg, #fff0 330deg 360deg);
-  filter: blur(18px);
-  opacity: 0.7;
-  animation: sparkle 3.5s linear infinite;
-  pointer-events: none;
-}
-
-@keyframes sparkle {
-  0% { transform: rotate(0deg);}
-  100% { transform: rotate(360deg);}
-}
-
-.bmi-card h1 {
-  color: #fff;
-  text-shadow: 0 4px 24px #26d0ce88, 0 2px 0 #222;
-  font-size: 2.2rem;
-  letter-spacing: 2px;
-  margin-bottom: 18px;
-}
-
-.bmi-card input[type="number"] {
-  width: 100%;
-  padding: 12px;
-  border-radius: 12px;
-  border: 2px solid #26d0ce;
-  background: rgba(255,255,255,0.85);
-  font-size: 1.1rem;
-  margin-bottom: 16px;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  box-shadow: 0 2px 8px #26d0ce22;
-}
-
-.bmi-card input[type="number"]:focus {
-  border-color: #00ffe0;
-  box-shadow: 0 4px 16px #00ffe044;
-}
-
-.bmi-card button {
-  width: 100%;
-  padding: 12px;
-  border-radius: 12px;
-  border: none;
-  background: linear-gradient(90deg, #26d0ce 0%, #1a2980 100%);
-  color: #fff;
-  font-weight: bold;
-  font-size: 1.1rem;
-  letter-spacing: 1px;
-  box-shadow: 0 2px 8px #26d0ce44;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
-}
-
-.bmi-card button:hover {
-  background: linear-gradient(90deg, #00ffe0 0%, #1a2980 100%);
-  transform: scale(1.04);
-}
-
-.bmi-card .bmi-result {
-  margin-top: 24px;
-  font-size: 1.2rem;
-  color: #fff;
-  text-align: center;
-  text-shadow: 0 2px 8px #26d0ce88;
-}
-
-.bmi-card .bmi-status {
-  margin-top: 10px;
-  font-size: 1.1rem;
-  color: #00ffe0;
-  font-weight: bold;
-  text-shadow: 0 2px 8px #fff8;
-}
-
-.bmi-card img {
-  margin-top: 18px;
-  max-width: 320px;
-  width: 100%;
-  border-radius: 18px;
-  box-shadow: 0 4px 24px #26d0ce55;
-  border: 2.5px solid #00ffe0;
-  background: #fff;
-  animation: imgGlow 2.5s ease-in-out infinite alternate;
-}
-
-@keyframes imgGlow {
-  0% { box-shadow: 0 4px 24px #26d0ce55; }
-  100% { box-shadow: 0 8px 48px #00ffe088; }
+    100% { transform: translate(-50%, -30px); opacity: 0; }
 }
 
 /* Health Bar */
 .hp-bar-container {
   position: relative;
-  width: 180px;
-  height: 22px;
-  background: #222;
-  border-radius: 12px;
-  margin-bottom: 6px;
+  width: 100%;
+  max-width: 220px;
+  height: 28px;
+  background: #e0e0e0;
+  border-radius: 14px;
+  margin: 8px auto;
   overflow: hidden;
-  border: 2px solid #444;
+  border: 2px solid #bbb;
 }
+
 .hp-bar {
   height: 100%;
-  background: linear-gradient(90deg, #ff5252 60%, #b71c1c 100%);
+  background: linear-gradient(90deg, #ff5252 0%, #e53935 100%);
   border-radius: 12px 0 0 12px;
-  transition: width 0.5s cubic-bezier(.4,2.3,.3,1);
+  transition: width 0.5s ease;
 }
+
 .hp-bar-text {
   position: absolute;
   width: 100%;
@@ -526,29 +363,33 @@ body::before {
   left: 0;
   text-align: center;
   color: #fff;
-  font-size: 13px;
-  line-height: 22px;
-  text-shadow: 1px 1px 2px #000;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 28px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   pointer-events: none;
 }
 
 /* Mana Bar */
 .mana-bar-container {
-  width: 320px;
-  height: 18px;
-  border-radius: 12px;
-  margin-bottom: 10px;
-  border: 2px solid #2e7cff;
-  background: #1a2233;
   position: relative;
+  width: 100%;
+  max-width: 220px;
+  height: 24px;
+  border-radius: 12px;
+  margin: 8px auto;
+  border: 2px solid #64b5f6;
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
   overflow: hidden;
 }
+
 .mana-bar {
   height: 100%;
-  background: linear-gradient(90deg, #00cfff 60%, #2e7cff 100%);
-  border-radius: 12px 0 0 12px;
-  transition: width 0.5s cubic-bezier(.4,2.3,.3,1);
+  background: linear-gradient(90deg, #42a5f5 0%, #1e88e5 100%);
+  border-radius: 10px 0 0 10px;
+  transition: width 0.5s ease;
 }
+
 .mana-bar-text {
   position: absolute;
   width: 100%;
@@ -556,9 +397,10 @@ body::before {
   left: 0;
   text-align: center;
   color: #fff;
-  font-size: 13px;
-  line-height: 18px;
-  text-shadow: 1px 1px 2px #000;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 24px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   pointer-events: none;
 }
 
